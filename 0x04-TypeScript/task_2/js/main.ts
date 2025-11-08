@@ -45,11 +45,14 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
+
 export function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-export function executeWork(employee: Director | Teacher): string {
+
+
+function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
   } else {
@@ -57,17 +60,8 @@ export function executeWork(employee: Director | Teacher): string {
   }
 }
 
-type Subjects = 'Math' | 'History';
+// Test logs (optional)
+console.log(executeWork(createEmployee(200)));
+console.log(executeWork(createEmployee(1000)));
 
-export function teachClass(todayClass: Subjects): string {
-  if (todayClass === 'Math') {
-    return 'Teaching Math';
-  }
-  return 'Teaching History';
-}
-
-// Optional test logs
-console.log(teachClass('Math'));
-console.log(teachClass('History'));
-
-export { createEmployee, Director, Teacher };
+export { createEmployee, isDirector, executeWork, Director, Teacher };
